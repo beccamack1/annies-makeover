@@ -1,0 +1,20 @@
+# Tells Netlify how to build the site.
+# "npm run build" makes the finished site in the dist folder.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# "npx netlify dev" runs the site the way Netlify will, on
+# this computer, at http://localhost:8892
+[dev]
+  command = "npx vite --port 5184 --strictPort"
+  targetPort = 5184
+  port = 8892
+  framework = "#custom"
+
+# While this is still a pitch: tell search engines not to list
+# the site. Remove this part once the owners say yes.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

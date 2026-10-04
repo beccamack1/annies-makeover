@@ -1,0 +1,17 @@
+# Logs
+*.log
+
+node_modules
+dist
+*.local
+
+# Editor and Mac files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# Netlify (local test data and secrets)
+.netlify
+.env
+deno.lock

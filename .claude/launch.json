@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "annies",
+      "runtimeExecutable": "/Users/becca/.nvm/versions/node/v24.21.0/bin/node",
+      "runtimeArgs": ["node_modules/vite/bin/vite.js", "--port", "5184", "--strictPort"],
+      "port": 5184
+    },
+    {
+      "name": "annies-build",
+      "runtimeExecutable": "zsh",
+      "runtimeArgs": ["-lc", "source ~/.zshrc && npm run build && npm run preview -- --port 4184 --strictPort"],
+      "port": 4184
+    }
+  ]
+}
