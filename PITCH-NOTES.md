@@ -3,7 +3,7 @@
 Research done October 4, 2026. Everything here has a source. Things we
 couldn't confirm are in their own section near the bottom.
 
-**Pitch deck:** _(link added once the deck is made)_
+**Pitch deck:** https://claude.ai/artifact/WogDLCmh2jpXFcPTARicft (8 slides; private until you share it from its Share menu)
 
 ## The short version
 
@@ -36,8 +36,9 @@ becomes the friendly front door.
   380coit.anniessweetsntreats.com).
   Source: site capture of anniessweetsntreats.com, Oct 4.
 - **Google shows an out-of-date menu.** The FM423 Google "Menu" link
-  opens a SinglePlatform menu with old prices (Americano $2.45 there,
-  about $4 now). Source: http://places.singleplatform.com/annies-sweets--treats/menu?ref=google
+  opens a SinglePlatform menu with old prices (medium Americano $2.45
+  there; $2.95 on their own FM423 ordering page today, $3.99+ on the
+  delivery apps). Source: http://places.singleplatform.com/annies-sweets--treats/menu?ref=google
 - **The website doesn't show hours or addresses on the homepage.** Hours
   only appear on the ordering pages. Source: anniessweetsntreats.com.
 - **Their hours are different on every listing.** Google, Yelp, Uber Eats,
