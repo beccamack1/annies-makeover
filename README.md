@@ -16,10 +16,10 @@ publishing credits ran out.
 
 ## See it online
 
-**SITE_URL** (a private preview: locked unless you're signed in to the
+**https://annies-sweets-preview.pages.dev** (a private preview: locked unless you're signed in to the
 admin page or have a viewing link)
 
-- **Admin page:** SITE_URL/admin. Sign in with the admin password (it's in
+- **Admin page:** https://annies-sweets-preview.pages.dev/admin. Sign in with the admin password (it's in
   the `.dev.vars` file in this folder, and in Cloudflare as the
   `ADMIN_PASSWORD` secret). While you're signed in, you can see the whole
   site.
