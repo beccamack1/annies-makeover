@@ -26,8 +26,8 @@ export default function PreviewTimer() {
     return (
       <div className="preview-ended" role="dialog" aria-modal="true" aria-labelledby="preview-ended-title">
         <div className="preview-ended-card">
-          {/* the tab icon: it still loads after the preview has ended (the photos don't) */}
-          <img className="preview-ended-logo" src="/favicon.svg" alt="" width="84" height="84" />
+          {/* the logo as a tab icon: it still loads after the preview has ended (the photos don't) */}
+          <img className="preview-ended-logo" src="/favicon.png" alt="" width="84" height="84" />
           <h2 id="preview-ended-title">Your preview has ended</h2>
           <p>
             Thank you for taking a look at the new {shopName} website 🧁 To see it again, please ask whoever sent you

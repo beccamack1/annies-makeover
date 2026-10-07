@@ -18,8 +18,8 @@ export default function Header() {
   return (
     <header className="nav" id="top">
       <a href="#top" className="nav-logo" aria-label={shopName + ' home'} onClick={close}>
-        <img src="/images/logo.png" alt="" width="60" height="50" />
-        <span>Annie's <small>Sweets &amp; Treats</small></span>
+        {/* their original logo, just as it is on anniessweetsntreats.com */}
+        <img src="/images/logo.png" alt="" width="360" height="300" />
       </a>
       <button
         className="nav-toggle"

@@ -122,7 +122,7 @@ const TEXT = {
 };
 
 // Annie's red-hood mascot in the teal bubble (same drawing as the site's tab icon)
-const MASCOT = `<svg class="mascot" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="33" r="30" fill="#8ED4D2"/><path d="M30 13c8-1 15 1 19 4l7-9-2 12c3 4 4 9 3 14-1 12-12 21-26 20-12-1-21-10-21-22 0-10 8-18 20-19z" fill="#EB1C22" stroke="#231f20" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="30" cy="38" rx="15" ry="13" fill="#fff" stroke="#231f20" stroke-width="2.4"/><path d="M27 26c2-3 6-3 7 0" fill="none" stroke="#f0a24a" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="37" r="1.8" fill="#231f20"/><circle cx="35" cy="37" r="1.8" fill="#231f20"/><circle cx="20.5" cy="41.5" r="2.6" fill="#f6b9b5"/><circle cx="38.5" cy="41.5" r="2.6" fill="#f6b9b5"/><path d="M27.5 43.5c1.5 1.4 3.5 1.4 5 0" fill="none" stroke="#231f20" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const MASCOT = `<img class="mascot" src="/favicon.png" alt="">`;
 
 function page(kind: keyof typeof TEXT, pass?: Pass) {
   const t = TEXT[kind];
@@ -134,7 +134,7 @@ function page(kind: keyof typeof TEXT, pass?: Pass) {
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow"><meta name="color-scheme" content="light"><title>${t.title} · Annie’s Sweets &amp; Treats</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="360x360" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fredoka:wght@600&family=Nunito:wght@400;700;800&display=swap">
 <style>
   *{box-sizing:border-box}
@@ -177,7 +177,8 @@ export const config = {
     "/admin.html",
     "/assets/*",
     "/api/admin/*",
-    "/favicon.svg",
+    "/favicon.png",
+    "/favicon-32.png",
     "/apple-touch-icon.png",
     "/.netlify/*",
     // only used by "npx netlify dev" on this computer (the admin page's code)
