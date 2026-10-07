@@ -5,6 +5,7 @@
    To remove it once the owners say yes, set showConceptBanner
    to false in src/data/shop.ts.
    ========================================================== */
+import { showQuote } from '../data/pitch'
 import { shopName, showConceptBanner } from '../data/shop'
 
 export default function ConceptBanner() {
@@ -13,6 +14,7 @@ export default function ConceptBanner() {
   return (
     <p className="concept-banner">
       Concept preview made for {shopName} · not the shop's official website
+      {showQuote && <> · <a href="#quote">See the quote ↓</a></>}
     </p>
   )
 }

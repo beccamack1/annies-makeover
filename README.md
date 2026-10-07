@@ -10,7 +10,28 @@ on the website (today it's hidden inside their ordering pages). Plus cakes
 Ordering still goes to their existing ordering pages.
 
 It's built with **Vite + React + TypeScript + Zustand** (the standard setup
-for all of Becca's projects) and will be hosted on Netlify.
+for all of Becca's projects) and hosted on Netlify.
+
+## See it online
+
+**https://annies-sweets-preview.netlify.app** (a private preview: locked
+unless you're signed in to the admin page or have a viewing link)
+
+- **Admin page:** https://annies-sweets-preview.netlify.app/admin. Sign in
+  with the admin password (it's in the `.env` file in this folder, and in
+  Netlify under Project configuration → Environment variables →
+  `ADMIN_PASSWORD`). While you're signed in, you can see the whole site.
+- **🔒 Viewing links:** type who the link is for and press "Make a viewing
+  link". Then press **Copy message** (a friendly note with the link, ready to
+  paste in a text, email or DM), **Copy link only**, or **Write an email**.
+  The person presses "Start viewing" and gets 10 minutes, on one device,
+  once. The list shows if each link was opened; you can cancel or delete
+  links. Don't open a link yourself: it would use it up.
+- **💌 Quote:** at the bottom of the site there's a quote: ~~$1,500~~
+  **$750** (current promo, with all the added extras), 50% to start and 50%
+  at launch, paid by Zelle to Rebecca Womack, (254) 833-3535. When the
+  owners press "Accept this quote" (or "Ask about a basic option"), their
+  details show in this tab.
 
 ## See it on this computer
 
@@ -45,6 +66,10 @@ so it never clashes with Becca's other sites.
 | Photos                                        | `public/images/` (menu photos in `public/images/menu/`) |
 | Colors and fonts                              | `src/styles.css` (at the top)   |
 | The tab icon                                  | `public/favicon.svg`            |
+| The quote: price, promo, Zelle, what's included | `src/data/pitch.ts`           |
+| The message that goes with each viewing link  | `src/data/pitch.ts` (at the bottom) |
+| How many minutes a viewing link lasts         | `netlify/lib/viewing.mjs` (`VIEW_MINUTES`) |
+| The "private preview" pages people see        | `netlify/edge-functions/private-preview.ts` |
 
 Each file has notes at the top that explain what's in it.
 
@@ -56,7 +81,22 @@ Each file has notes at the top that explain what's in it.
   which menu tab is open, what's typed in the search box).
 - `src/lib/`: helpers ("open now" in Texas time, menu search).
 - `src/App.tsx`: puts all the parts in order, top to bottom.
+- `src/admin.tsx` and `admin.html`: the /admin page.
+- `netlify/`: the small server pieces: the lock in front of the site
+  (`edge-functions/`), the admin page's viewing links and quote list, and
+  saving quote requests (`functions/`). They save to Netlify Blobs.
 - `public/`: photos, the logo and the tab icons.
+
+## The lock (PREVIEW_LOCK)
+
+Online, the site is locked: strangers see a friendly "private preview" page.
+To switch the lock off, add `PREVIEW_LOCK` = `off` in Netlify's environment
+variables and deploy again. On this computer it's off (in `.env`), so you
+can always see the site here.
+
+To try the admin page and the lock on this computer, run
+`npx netlify dev` and open http://localhost:8892 (set `PREVIEW_LOCK=on` in
+`.env` to try the lock, and back to `off` after).
 
 ## Checks before putting it online
 
@@ -81,6 +121,14 @@ Both should finish with no errors.
 
 All the research, with sources, is in `PITCH-NOTES.md`.
 
+## Putting changes online
+
+After a change, check it (`npm run lint` and `npm run build`), then:
+
+```bash
+npx netlify deploy --build --prod
+```
+
 ## When the owners say yes
 
 The site is marked as a pitch so nobody mistakes it for Annie's real
@@ -88,7 +136,9 @@ website. To make it official:
 
 1. In `src/data/shop.ts`, change `showConceptBanner` to `false`.
 2. In `index.html`, delete the `<meta name="robots" ...>` line.
-3. In `netlify.toml`, delete the `[[headers]]` part at the bottom.
+3. In `netlify.toml`, delete the first `[[headers]]` part (the one for `/*`).
+4. In `src/data/pitch.ts`, change `showQuote` to `false`.
+5. In Netlify, add `PREVIEW_LOCK` = `off` so everyone can see the site.
 
 ## Still to do (needs the owners)
 

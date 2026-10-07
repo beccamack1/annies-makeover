@@ -1,10 +1,16 @@
 # Tells Netlify how to build the site.
 # "npm run build" makes the finished site in the dist folder.
+# The small server pieces (the /admin page, viewing links and the
+# quote) are in netlify/functions and netlify/edge-functions.
 [build]
   command = "npm run build"
   publish = "dist"
 
-# "npx netlify dev" runs the site the way Netlify will, on
+# Build with the same Node version as this computer
+[build.environment]
+  NODE_VERSION = "24"
+
+# "npx netlify dev" runs the site AND the server pieces on
 # this computer, at http://localhost:8892
 [dev]
   command = "npx vite --port 5184 --strictPort"
@@ -12,9 +18,21 @@
   port = 8892
   framework = "#custom"
 
+# The owner's page (viewing links and the quote) lives at /admin
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
 # While this is still a pitch: tell search engines not to list
 # the site. Remove this part once the owners say yes.
 [[headers]]
   for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Never list the admin page in search engines
+[[headers]]
+  for = "/admin*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

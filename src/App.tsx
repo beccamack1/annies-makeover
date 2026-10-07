@@ -12,6 +12,8 @@ import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import Menu from './components/Menu'
 import Parties from './components/Parties'
+import PreviewTimer from './components/PreviewTimer'
+import QuoteSection from './components/QuoteSection'
 import Reviews from './components/Reviews'
 import Visit from './components/Visit'
 
@@ -30,8 +32,10 @@ export default function App() {
         <Reviews />
         <Gallery />
         <Visit />
+        <QuoteSection />
       </main>
       <Footer />
+      <PreviewTimer />
     </>
   )
 }
