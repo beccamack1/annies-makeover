@@ -1,6 +1,6 @@
 /* The countdown someone sees while using a 10-minute viewing link,
    and the "preview has ended" screen when time is up.
-   (The lock itself is in netlify/edge-functions/private-preview.ts.) */
+   (The lock itself is in functions/_middleware.ts.) */
 import { useEffect, useState } from 'react'
 import { shopName } from '../data/shop'
 

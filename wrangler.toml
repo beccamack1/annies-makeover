@@ -1,0 +1,12 @@
+# Cloudflare Pages settings for the Annie's preview site.
+# "npm run deploy" builds the site and puts it online.
+name = "annies-sweets-preview"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
+
+# The database that keeps viewing links and quote requests
+# (server/db.ts makes its tables by itself).
+[[d1_databases]]
+binding = "DB"
+database_name = "annies-preview"
+database_id = "00000000-0000-0000-0000-000000000000"

@@ -20,7 +20,7 @@ export const useViewing = create<ViewingState>()((set, get) => ({
     try {
       set({ links: await fetchViewingLinks(useAdmin.getState().password) })
     } catch (error) {
-      // if the password stopped working (changed in Netlify), sign out
+      // if the password stopped working (changed in Cloudflare), sign out
       if (error instanceof AdminError && error.kind !== 'offline') useAdmin.getState().signOut(loginErrors[error.kind])
     }
   },

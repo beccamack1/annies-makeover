@@ -3,10 +3,8 @@
    "Accept this quote" button. Only shows while this is a pitch.
    The price and what's included are in src/data/pitch.ts.
 
-   Pressing "Send" saves their details (netlify/functions/
-   submit-quote.mjs) for /admin → 💌 Quote, and sends a copy to
-   Netlify Forms, which emails Becca. The hidden "quote" form in
-   index.html must have the same field names as this one.
+   Pressing "Send" saves their details (functions/api/quote/
+   submit.ts) for /admin → 💌 Quote.
    ========================================================== */
 import { useState, type FormEvent } from 'react'
 import { firstPayment, price, quote, showQuote } from '../data/pitch'
@@ -133,7 +131,6 @@ export default function QuoteSection() {
           </div>
         ) : (
           <form className="quote-form" name="quote" method="POST" onSubmit={send}>
-            <input type="hidden" name="form-name" value="quote" />
             <input type="hidden" name="option" value={choice} />
             {/* a trap for spam robots. People never see it. */}
             <p className="sr-only" aria-hidden="true">

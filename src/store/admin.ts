@@ -29,7 +29,7 @@ function savePassword(password: string) {
 
 export const loginErrors: Record<AdminError['kind'], string> = {
   'wrong-password': "That password isn't right. Try again.",
-  'not-set-up': "The admin password hasn't been set up in Netlify yet (ADMIN_PASSWORD).",
+  'not-set-up': "The admin password hasn't been set up in Cloudflare yet (ADMIN_PASSWORD).",
   offline: "Couldn't reach the website. Check your internet connection and try again.",
 }
 

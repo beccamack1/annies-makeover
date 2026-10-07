@@ -1,7 +1,7 @@
 /* ==========================================================
-   Talking to the server pieces (netlify/functions/): the
-   /admin page (viewing links, quote requests) and the quote.
-   These only work on Netlify, or with "npx netlify dev".
+   Talking to the server pieces (functions/): the /admin page
+   (viewing links, quote requests) and the quote. These only
+   work on Cloudflare, or with "npm run cf:dev".
    ========================================================== */
 
 // Errors the /admin page knows how to explain
@@ -13,7 +13,7 @@ export class AdminError extends Error {
   }
 }
 
-// ---------- Viewing links (netlify/functions/admin-viewing.mjs) ----------
+// ---------- Viewing links (functions/api/admin/viewing.ts) ----------
 
 export type ViewingLink = {
   id: string
@@ -58,7 +58,7 @@ export async function viewingAction(password: string, body: ViewingAction): Prom
 // Signing out of /admin also stops the locked site recognizing this browser
 export const forgetOwner = () => fetch('/api/admin/viewing', { method: 'DELETE' }).catch(() => undefined)
 
-// ---------- The quote (netlify/functions/submit-quote.mjs, admin-quotes.mjs) ----------
+// ---------- The quote (functions/api/quote/submit.ts, functions/api/admin/quotes.ts) ----------
 
 export type QuoteRequest = {
   id: string
@@ -70,15 +70,11 @@ export type QuoteRequest = {
   createdAt: string
 }
 
+// Saves it so Becca sees it on /admin (💌 Quote)
 export async function submitQuote(answers: FormData): Promise<void> {
-  // 1. save it so Becca sees it on /admin
   const response = await fetch('/api/quote/submit', { method: 'POST', body: answers })
   const result = await response.json().catch(() => ({}))
   if (!response.ok) throw new Error(result.error || "That didn't send. Please try again.")
-
-  // 2. send a copy to Netlify Forms, which emails Becca.
-  //    If only this part fails, the quote is still saved.
-  fetch('/', { method: 'POST', body: new URLSearchParams(answers as unknown as Record<string, string>) }).catch(() => {})
 }
 
 export async function fetchQuotes(password: string): Promise<QuoteRequest[]> {

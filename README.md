@@ -10,17 +10,19 @@ on the website (today it's hidden inside their ordering pages). Plus cakes
 Ordering still goes to their existing ordering pages.
 
 It's built with **Vite + React + TypeScript + Zustand** (the standard setup
-for all of Becca's projects) and hosted on Netlify.
+for all of Becca's projects) and hosted on **Cloudflare Pages** (free).
+It moved from Netlify in October 2026, when Netlify's free monthly
+publishing credits ran out.
 
 ## See it online
 
-**https://annies-sweets-preview.netlify.app** (a private preview: locked
-unless you're signed in to the admin page or have a viewing link)
+**SITE_URL** (a private preview: locked unless you're signed in to the
+admin page or have a viewing link)
 
-- **Admin page:** https://annies-sweets-preview.netlify.app/admin. Sign in
-  with the admin password (it's in the `.env` file in this folder, and in
-  Netlify under Project configuration → Environment variables →
-  `ADMIN_PASSWORD`). While you're signed in, you can see the whole site.
+- **Admin page:** SITE_URL/admin. Sign in with the admin password (it's in
+  the `.dev.vars` file in this folder, and in Cloudflare as the
+  `ADMIN_PASSWORD` secret). While you're signed in, you can see the whole
+  site.
 - **🔒 Viewing links:** type who the link is for and press "Make a viewing
   link". Then press **Copy message** (a friendly note with the link, ready to
   paste in a text, email or DM), **Copy link only**, or **Write an email**.
@@ -50,7 +52,7 @@ npm run dev
 Open http://localhost:5184. Leave Terminal open. When you save a change to
 a file, the page updates by itself. Press `Ctrl + C` in Terminal to stop.
 
-This project always uses port **5184** (and 8892 for `npx netlify dev`),
+This project always uses port **5184** (and 8892 for `npm run cf:dev`),
 so it never clashes with Becca's other sites.
 
 ## Where to change things
@@ -65,11 +67,11 @@ so it never clashes with Becca's other sites.
 | The words in the red scrolling strip          | `src/data/shop.ts` (at the bottom) |
 | Photos                                        | `public/images/` (menu photos in `public/images/menu/`) |
 | Colors and fonts                              | `src/styles.css` (at the top)   |
-| The tab icon                                  | `public/favicon.svg`            |
+| The logo and tab icons                        | `public/images/logo.png`, `public/favicon.png` |
 | The quote: price, promo, Zelle, what's included | `src/data/pitch.ts`           |
 | The message that goes with each viewing link  | `src/data/pitch.ts` (at the bottom) |
-| How many minutes a viewing link lasts         | `netlify/lib/viewing.mjs` (`VIEW_MINUTES`) |
-| The "private preview" pages people see        | `netlify/edge-functions/private-preview.ts` |
+| How many minutes a viewing link lasts         | `server/viewing.ts` (`VIEW_MINUTES`) |
+| The "private preview" pages people see        | `server/lockPages.ts`           |
 
 Each file has notes at the top that explain what's in it.
 
@@ -82,21 +84,26 @@ Each file has notes at the top that explain what's in it.
 - `src/lib/`: helpers ("open now" in Texas time, menu search).
 - `src/App.tsx`: puts all the parts in order, top to bottom.
 - `src/admin.tsx` and `admin.html`: the /admin page.
-- `netlify/`: the small server pieces: the lock in front of the site
-  (`edge-functions/`), the admin page's viewing links and quote list, and
-  saving quote requests (`functions/`). They save to Netlify Blobs.
+- `functions/`: the small server pieces Cloudflare runs: the lock in front
+  of the site (`_middleware.ts`), the admin page's viewing links and quote
+  list (`api/admin/`), and saving quote requests (`api/quote/`).
+- `server/`: helpers those pieces share, including the database
+  (`db.ts`, a free Cloudflare D1 database that makes its own tables).
+- `wrangler.toml`: Cloudflare's settings for this site.
 - `public/`: photos, the logo and the tab icons.
 
 ## The lock (PREVIEW_LOCK)
 
 Online, the site is locked: strangers see a friendly "private preview" page.
-To switch the lock off, add `PREVIEW_LOCK` = `off` in Netlify's environment
-variables and deploy again. On this computer it's off (in `.env`), so you
-can always see the site here.
+To switch the lock off, add a variable `PREVIEW_LOCK` = `off` in Cloudflare
+(Workers & Pages → annies-sweets-preview → Settings → Variables and Secrets)
+and publish again. On this computer it's off (in `.dev.vars`), so you can
+always see the site here.
 
-To try the admin page and the lock on this computer, run
-`npx netlify dev` and open http://localhost:8892 (set `PREVIEW_LOCK=on` in
-`.env` to try the lock, and back to `off` after).
+To try the admin page and the lock on this computer, run `npm run cf:dev`
+and open http://localhost:8892 (set `PREVIEW_LOCK=on` in `.dev.vars` to try
+the lock, and back to `off` after). The first time, copy
+`.dev.vars.example` to `.dev.vars` and put a password in it.
 
 ## Checks before putting it online
 
@@ -126,8 +133,12 @@ All the research, with sources, is in `PITCH-NOTES.md`.
 After a change, check it (`npm run lint` and `npm run build`), then:
 
 ```bash
-npx netlify deploy --build --prod
+npm run deploy
 ```
+
+It builds the site and puts it online. Cloudflare's free plan allows 500
+of these a month. (The first time on a new computer, sign in to
+Cloudflare with `npx wrangler login`.)
 
 ## When the owners say yes
 
@@ -136,9 +147,9 @@ website. To make it official:
 
 1. In `src/data/shop.ts`, change `showConceptBanner` to `false`.
 2. In `index.html`, delete the `<meta name="robots" ...>` line.
-3. In `netlify.toml`, delete the first `[[headers]]` part (the one for `/*`).
+3. In `public/_headers`, delete the `/*` and `X-Robots-Tag` lines.
 4. In `src/data/pitch.ts`, change `showQuote` to `false`.
-5. In Netlify, add `PREVIEW_LOCK` = `off` so everyone can see the site.
+5. In Cloudflare, add `PREVIEW_LOCK` = `off` so everyone can see the site.
 
 ## Still to do (needs the owners)
 
@@ -148,3 +159,6 @@ website. To make it official:
 - [ ] Their story and names, for an "About us" section
 - [ ] A bigger logo file and new photos (especially of the 380 & Coit shop)
 - [ ] Update the ratings in `src/data/reviews.ts` right before the pitch
+- [ ] Quote emails: on Netlify, each accepted quote was also emailed to
+      Becca. On Cloudflare it's saved and shows on /admin (💌 Quote), but
+      no email yet (needs a free email service such as Resend).

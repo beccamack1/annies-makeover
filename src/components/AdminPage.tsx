@@ -4,8 +4,8 @@
       (ViewingLinks.tsx)
    2. 💌 Quote: who accepted the quote (QuoteRequests.tsx)
 
-   The password is the ADMIN_PASSWORD environment variable in
-   Netlify (Project configuration → Environment variables).
+   The password is the ADMIN_PASSWORD secret in Cloudflare
+   (see README).
    The state lives in src/store/admin.ts.
    ========================================================== */
 import { useEffect, useState, type FormEvent } from 'react'

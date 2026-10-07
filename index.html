@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Annie's Sweets &amp; Treats · Macarons, cakes &amp; boba in Frisco, TX</title>
     <!-- Tells Google not to list this site while it's still a pitch.
-         Remove this line (and the [[headers]] part in netlify.toml) once the owners say yes. -->
+         Remove this line (and the lines in public/_headers) once the owners say yes. -->
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Annie's Sweets & Treats: macarons, cheesecakes, soft-baked cookies, croffles, gelato, bubble tea and coffee at two dessert cafés in Frisco, Texas. See the full menu with prices and order pickup." />
     <meta name="theme-color" content="#8ED4D2" />
@@ -19,16 +19,6 @@
   <body>
     <!-- React draws the whole page inside this box -->
     <div id="root"></div>
-
-    <!-- NETLIFY FORMS
-         Netlify looks for forms in this file when the site is built.
-         This hidden copy tells it about the "Accept this quote" form
-         (src/components/QuoteSection.tsx). If you add a question to
-         that form, add its name here too. -->
-    <form name="quote" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input name="bot-field" /><input name="option" /><input name="name" /><input name="email" /><input name="phone" />
-      <textarea name="message"></textarea>
-    </form>
 
     <script type="module" src="/src/main.tsx"></script>
   </body>

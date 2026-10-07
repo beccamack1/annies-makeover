@@ -3,8 +3,7 @@
    preview site, only while this is a pitch)
    - Change the price, promo, terms or what's included here.
      To end the promo, set promo to null: the regular price shows.
-   - "Accept this quote" saves their details for /admin (💌 Quote)
-     and emails Becca through Netlify Forms.
+   - "Accept this quote" saves their details for /admin (💌 Quote).
    - Set showQuote to false to hide the section (do this once the
      owners have said yes).
    ========================================================== */

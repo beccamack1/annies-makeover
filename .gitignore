@@ -15,3 +15,7 @@ dist
 .netlify
 .env
 deno.lock
+
+# Cloudflare (local test data and secrets)
+.wrangler
+.dev.vars

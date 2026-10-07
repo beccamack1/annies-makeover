@@ -2,7 +2,7 @@
    VIEWING LINKS (the first tab on /admin)
    Make a personal link for each person. They get 10 minutes
    (from when they press "Start viewing"), on one device, once.
-   The minutes are set in netlify/lib/viewing.mjs.
+   The minutes are set in server/viewing.ts.
    ========================================================== */
 import { useEffect, useState, type FormEvent } from 'react'
 import { previewMessage } from '../data/pitch'

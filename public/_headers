@@ -1,0 +1,4 @@
+# While this is still a pitch: tell search engines not to list
+# the site. Remove these two lines once the owners say yes.
+/*
+  X-Robots-Tag: noindex, nofollow

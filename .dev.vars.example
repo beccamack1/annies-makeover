@@ -1,6 +1,6 @@
-# Copy this file to .env to try the /admin page on this computer
-# with "npx netlify dev". On Netlify, set ADMIN_PASSWORD under
-# Project configuration → Environment variables instead.
+# Copy this file to .dev.vars to try the /admin page and the lock
+# on this computer with "npm run cf:dev". Online, the password is
+# a Cloudflare secret instead (see README).
 ADMIN_PASSWORD=choose-a-long-password
 
 # The 10-minute viewing-link lock (see README). "off" switches it off.
