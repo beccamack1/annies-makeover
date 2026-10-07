@@ -5,7 +5,7 @@ couldn't confirm are in their own section near the bottom.
 
 **Pitch deck:** https://claude.ai/artifact/WogDLCmh2jpXFcPTARicft (8 slides; private until you share it from its Share menu)
 
-**Online preview (Oct 7, 2026):** https://annies-sweets-preview.netlify.app, locked behind 10-minute viewing links made on /admin, with the quote at the bottom ($1,500, promo $750, 50/50, Zelle).
+**Online preview (Oct 7, 2026):** https://annies-sweets-preview.pages.dev (moved from Netlify to free Cloudflare hosting), locked behind 10-minute viewing links made on /admin, with the quote at the bottom ($1,500, promo $750, 50/50, Zelle).
 
 ## The short version
 
