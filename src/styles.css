@@ -414,8 +414,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; ma
 
 /* ---------- gallery ---------- */
 .gallery { background: var(--pink-soft); }
-.gallery-grid { columns: 2; column-gap: .75rem; }
-.gallery-grid img { width: 100%; margin-bottom: .75rem; border-radius: 18px; break-inside: avoid; }
+/* an even grid (same-size photos), so the bottom edge is straight */
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+.gallery-grid img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; }
+/* less space where the photos meet "Two shops in Frisco" */
+.section.gallery { padding-bottom: 2.5rem; }
+.section.visit { padding-top: 3rem; }
 
 /* ---------- visit ---------- */
 .visit { background: var(--mint); }
@@ -658,7 +662,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; ma
   .menu-grid { grid-template-columns: repeat(2, 1fr); }
   .rating-row { grid-template-columns: repeat(4, 1fr); }
   .review-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid { columns: 3; }
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
   .celebrate-grid { grid-template-columns: repeat(3, 1fr); }
   .packages { grid-template-columns: repeat(3, 1fr); }
   .visit-grid { grid-template-columns: repeat(2, 1fr); }
@@ -689,7 +693,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; ma
   .tabs { flex-wrap: wrap; justify-content: center; overflow: visible; }
   .menu-note { text-align: center; }
   .review-grid { grid-template-columns: repeat(3, 1fr); }
-  .gallery-grid { columns: 4; }
   .parties { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 2.5rem; align-items: center; padding-inline: max(32px, calc((100% - 1180px) / 2)); }
   .parties > * { margin: 0; }
   .parties-intro { text-align: left; }
