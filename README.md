@@ -30,7 +30,7 @@ admin page or have a viewing link)
   once. The list shows if each link was opened; you can cancel or delete
   links. Don't open a link yourself: it would use it up.
 - **💌 Quote:** at the bottom of the site there's a quote: ~~$1,500~~
-  **$750** (current promo, with all the added extras), 50% to start and 50%
+  **$750** (promo until October 31, with all the added extras), 50% to start and 50%
   at launch, paid by Zelle to Rebecca Womack, (254) 833-3535. When the
   owners press "Accept this quote" (or "Ask about a basic option"), their
   details show in this tab.

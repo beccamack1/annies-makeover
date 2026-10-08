@@ -13,7 +13,7 @@ export const showQuote = true
 export const quote = {
   regularPrice: '$1,500',
   // the current promo: shown instead of the regular price (null = no promo)
-  promo: { price: '$750', label: 'Current promo', note: 'with all the added extras' } as
+  promo: { price: '$750', label: 'Promo until October 31', note: 'with all the added extras' } as
     | { price: string; label: string; note: string }
     | null,
   // how they pay: Zelle (sent from their own bank app to this name and number)
